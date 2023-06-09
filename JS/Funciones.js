@@ -1,4 +1,4 @@
-sortComments();
+acomodarComentarios();
 
 function agregarComentarios(event) {
     event.preventDefault(); //Evito que la página se actualice cuando se envía el formulario
@@ -16,19 +16,19 @@ function agregarComentarios(event) {
 
 
 // creo una nueva fila en la tabla
-    let table = document.getElementById("comentarios").getElementsByTagName('tbody')[0];
-    let newRow = table.insertRow(table.rows.length);
+    let tabla = document.getElementById("comentarios").getElementsByTagName('tbody')[0];
+    let fila = tabla.insertRow(table.filas.length);
 
 
-newRow.insertCell(0).innerHTML = nombre;
-newRow.insertCell(1).innerHTML = apellido;
-newRow.insertCell(2).innerHTML = empresa;
-newRow.insertCell(3).innerHTML = email;
-newRow.insertCell(4).innerHTML = mensaje;
-newRow.insertCell(5).innerHTML = sueldoEnPesos;
-newRow.insertCell(6).innerHTML = sueldoEnPesos / 49;
-newRow.insertCell(7).innerHTML = sueldoEnPesos / 484.00;
-newRow.insertCell(8).innerHTML = sueldoEnPesos / 30;
+fila.insertCell(0).innerHTML = nombre;
+fila.insertCell(1).innerHTML = apellido;
+fila.insertCell(2).innerHTML = empresa;
+fila.insertCell(3).innerHTML = email;
+fila.insertCell(4).innerHTML = mensaje;
+fila.insertCell(5).innerHTML = sueldoEnPesos;
+fila.insertCell(6).innerHTML = sueldoEnPesos / 49;
+fila.insertCell(7).innerHTML = sueldoEnPesos / 484.00;
+fila.insertCell(8).innerHTML = sueldoEnPesos / 30;
 
 //limpio los campos si el sueldo es mayor a 10000
     document.getElementById("nombre").value = "";
@@ -40,57 +40,57 @@ newRow.insertCell(8).innerHTML = sueldoEnPesos / 30;
 
 }
 else{
-    
+
 }
     
 }
 
-function sortComments() {
-    var sortingField = document.getElementById("metodoDeOrdenamientoCampo").value;
-    var sortingOrder = document.getElementById("metodoDeOrdenamientoForma").value;
-    var table = document.getElementById("comentarios").getElementsByTagName('tbody')[0];
-    var rows = Array.from(table.rows);
+function acomodarComentarios() {
+    var ordenarPorCampo = document.getElementById("metodoDeOrdenamientoCampo").value;
+    var OrdenarPorForma = document.getElementById("metodoDeOrdenamientoForma").value;
+    var tabla = document.getElementById("comentarios").getElementsByTagName('tbody')[0];
+    var filas = Array.from(tabla.filas);
 
-    rows.sort(function (a, b) {
-        var aValue, bValue;
+    filas.sort(function (a, b) {
+        var valorDeA, valorDeB;
 
-        switch (sortingField) {
+        switch (ordenarPorCampo) {
             case "0":
-                aValue = a.cells[0].innerText.toLowerCase();
-                bValue = b.cells[0].innerText.toLowerCase();
+                valorDeA = a.cells[0].innerText.toLowerCase();
+                valorDeB = b.cells[0].innerText.toLowerCase();
                 break;
             case "1":
-                aValue = a.cells[1].innerText.toLowerCase();
-                bValue = b.cells[1].innerText.toLowerCase();
+                valorDeA = a.cells[1].innerText.toLowerCase();
+                valorDeB = b.cells[1].innerText.toLowerCase();
                 break;
             case "2":
-                aValue = a.cells[2].innerText.toLowerCase();
-                bValue = b.cells[2].innerText.toLowerCase();
+                valorDeA = a.cells[2].innerText.toLowerCase();
+                valorDeB = b.cells[2].innerText.toLowerCase();
                 break;
             case "3":
-                aValue = parseFloat(a.cells[5].innerText);
-                bValue = parseFloat(b.cells[5].innerText);
+                valorDeA = parseFloat(a.cells[5].innerText);
+                valorDeB = parseFloat(b.cells[5].innerText);
                 break;
             default:
                 return 0;
         }
 
-        if (sortingOrder === "formaDescendente") {
-            if (typeof aValue === 'string') {
-                return bValue.localeCompare(aValue);
+        if (OrdenarPorForma === "formaDescendente") {
+            if (typeof valorDeA === 'string') {
+                return valorDeB.localeCompare(valorDeA);
             } else {
-                return bValue - aValue;
+                return valorDeB - valorDeA;
             }
         } else {
-            if (typeof aValue === 'string') {
-                return aValue.localeCompare(bValue);
+            if (typeof valorDeA === 'string') {
+                return valorDeA.localeCompare(valorDeB);
             } else {
-                return aValue - bValue;
+                return valorDeA - valorDeB;
             }
         }
     });
 
-    for (var i = 0; i < rows.length; i++) {
-        table.appendChild(rows[i]);
+    for (var i = 0; i < filas.length; i++) {
+        tabla.appendChild(filas[i]);
     }
 }   

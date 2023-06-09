@@ -17,7 +17,7 @@ function agregarComentarios(event) {
 
 // creo una nueva fila en la tabla
     let tabla = document.getElementById("comentarios").getElementsByTagName('tbody')[0];
-    let fila = tabla.insertRow(table.filas.length);
+    let fila = tabla.insertRow(tabla.filas.length);
 
 
 fila.insertCell(0).innerHTML = nombre;
